@@ -1,0 +1,12 @@
+---
+
+- name: zabbix agent is installed
+  package:
+    name: zabbix22-agent
+    state: present
+- name: zabbix agent is running
+  service:
+    name: zabbix-agent
+    state: started
+    enabled: yes
+
