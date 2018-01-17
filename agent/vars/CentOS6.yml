@@ -1,0 +1,3 @@
+---
+
+zabbix_agent_pidfile: /var/run/zabbix/zabbix_agentd.pid

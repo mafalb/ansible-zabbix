@@ -1,9 +1,22 @@
 ---
 
+- name: OS specific variables
+  include_vars: "{{ ansible_distribution }}{{ ansible_distribution_major_version }}.yml"
+
 - name: zabbix agent is installed
   package:
     name: zabbix22-agent
     state: present
+
+- name: zabbix agent is configured
+  template:
+    src: "{{ item }}"
+    dest: /etc/zabbix_agentd.conf
+    backup: yes
+  with_items:
+    - zabbix_agentd.conf.j2
+  notify: restart zabbix agent
+
 - name: zabbix agent is running
   service:
     name: zabbix-agent

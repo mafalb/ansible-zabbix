@@ -1,0 +1,10 @@
+---
+
+- name: open port for monitoring
+  firewalld:
+    zone: dmz
+    port: 10050/tcp
+    state: enabled
+    permanent: yes
+    immediate: yes
+    source: "{{ zabbix_server }}"
