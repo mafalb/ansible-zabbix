@@ -5,18 +5,25 @@
 
 - name: zabbix agent is installed
   package:
-    name: zabbix22-agent
+    name: "{{ zabbix.agent_package }}"
     state: present
 
 - name: zabbix agent is configured
   template:
     src: "{{ item }}"
-    dest: /etc/zabbix_agentd.conf
+    dest: /etc/zabbix/zabbix_agentd.conf
     backup: yes
   with_items:
     - zabbix_agentd.conf.j2
   notify: restart zabbix agent
 
+- name: home directory does exist
+  file:
+    path: /var/lib/zabbix
+    state: directory
+    owner: zabbix
+    group: zabbix
+    mode: 0750
 - name: zabbix agent is running
   service:
     name: zabbix-agent

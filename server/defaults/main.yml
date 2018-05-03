@@ -1,0 +1,13 @@
+---
+
+zabbix:
+  cfg:
+    StartPollers: 5
+    StartPollersUnreachable: 1
+    StartPingers: 1
+    StartHTTPPollers: 1
+    CacheSize: 8M
+    CacheUpdateFrequency: 60
+    StartProxyPollers: 1
+    ProxyDataFrequency: 1
+    ProxyConfigFrequency: 3600

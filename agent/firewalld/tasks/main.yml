@@ -7,4 +7,5 @@
     state: enabled
     permanent: yes
     immediate: yes
-    source: "{{ zabbix_server }}"
+    source: "{{ item }}"
+  with_items: "{{ zabbix.server }}"
