@@ -8,6 +8,12 @@
     name: "{{ zabbix.agent_package }}"
     state: present
 
+- name: config dir for zabbix does exist
+  notify: restart zabbix agent
+  file:
+    path: /etc/zabbix/zabbix_agentd.d
+    state: directory
+
 - name: zabbix agent is configured
   template:
     src: "{{ item }}"
