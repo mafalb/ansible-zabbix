@@ -1,0 +1,13 @@
+
+module zabbix_fping_add 1.0;
+
+require {
+	type zabbix_t;
+    type ping_t;
+    type sysfs_t;
+	class file read;
+}
+
+#============= ping_t ==============
+allow ping_t sysfs_t:file read;
+
