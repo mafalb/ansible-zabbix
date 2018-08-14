@@ -71,6 +71,15 @@ LogFileSize=0
 
 PidFile=/var/run/zabbix/zabbix_server.pid
 
+### Option: SocketDir
+#       IPC socket directory.
+#       Directory to store IPC sockets used by internal Zabbix services.
+#
+# Mandatory: no
+# Default:
+
+SocketDir=/var/run/zabbix
+
 ### Option: DBHost
 #	Database host name.
 #	If set to localhost, socket is used for MySQL.
@@ -415,6 +424,8 @@ CacheUpdateFrequency={{ zabbix.cfg.CacheUpdateFrequency }}
 # Range: 0,128K-64G
 # Default:
 # ValueCacheSize=8M
+
+ValueCacheSize={{ zabbix.cfg.ValueCacheSize }}
 
 ### Option: Timeout
 #	Specifies how long we wait for agent, SNMP device or external check (in seconds).

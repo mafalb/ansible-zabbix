@@ -11,3 +11,4 @@ zabbix:
     StartProxyPollers: 1
     ProxyDataFrequency: 1
     ProxyConfigFrequency: 3600
+    ValueCacheSize: 8M

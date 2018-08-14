@@ -1,0 +1,5 @@
+---
+
+zabbix:
+  cfg:
+    Include: /etc/zabbix/zabbix_agentd.d

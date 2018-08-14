@@ -30,6 +30,12 @@
     owner: zabbix
     group: zabbix
     mode: 0750
+
+- name: zabbix include dir
+  file:
+    path: "{{ zabbix.cfg.Include }}"
+    state: directory
+
 - name: zabbix agent is running
   service:
     name: zabbix-agent
