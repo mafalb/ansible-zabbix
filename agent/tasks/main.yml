@@ -42,3 +42,25 @@
     state: started
     enabled: yes
 
+- name: zabbix agent can network
+  when: zabbix_agent_can_network
+  block:
+  - name: file for selinux policy does exist
+    copy:
+      src: zabbix-agent.pp
+      dest: /root/
+
+  - name: selinux policy is loaded
+    command: semodule -i /root/zabbix-agent.pp
+
+  - name: netcat is present
+    package:
+      name: nc
+      state: present
+
+  - name: copy custom port check
+    when: zabbix_agent_can_network
+    copy:
+      src: custom.tcp.port.conf
+      dest: /etc/zabbix/zabbix_agentd.d/
+    notify: restart zabbix agent
