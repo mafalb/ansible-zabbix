@@ -51,6 +51,7 @@
       dest: /root/
 
   - name: selinux policy is loaded
+    when: ansible_selinux.status == 'enabled'
     command: semodule -i /root/zabbix-agent.pp
 
   - name: netcat is present
@@ -64,3 +65,20 @@
       src: custom.tcp.port.conf
       dest: /etc/zabbix/zabbix_agentd.d/
     notify: restart zabbix agent
+
+  - name: copy custom ntp check
+    when: zabbix_agent_can_network
+    copy:
+      src: custom.time.offset.conf
+      dest: /etc/zabbix/zabbix_agentd.d/
+    notify: restart zabbix agent
+  
+  - name: logrotate config is present
+    copy:
+      src: logrotate.conf
+      dest: /etc/logrotate.d/zabbix-agent
+      backup: true
+
+  - file:
+      path: /etc/logrotate.d/zabbix-agent.conf
+      state: absent
