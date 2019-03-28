@@ -3,6 +3,11 @@
 - name: OS specific variables
   include_vars: "{{ ansible_distribution }}{{ ansible_distribution_major_version }}.yml"
 
+- name: assertions
+  assert:
+    that:
+    - zabbix.agent_package is defined
+
 - name: zabbix agent is installed
   package:
     name: "{{ zabbix.agent_package }}"
