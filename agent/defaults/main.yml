@@ -5,5 +5,4 @@ zabbix_agent_can_network: false
 zabbix:
   cfg:
     Include: /etc/zabbix/zabbix_agentd.d
-
 ...
