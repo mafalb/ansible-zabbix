@@ -48,7 +48,7 @@
     enabled: yes
 
 - name: zabbix agent can network
-  when: zabbix_agent_can_network
+  when: zabbix_agent_can_network|bool
   block:
   - name: file for selinux policy does exist
     copy:
@@ -65,14 +65,14 @@
       state: present
 
   - name: copy custom port check
-    when: zabbix_agent_can_network
+    when: zabbix_agent_can_network|bool
     copy:
       src: custom.tcp.port.conf
       dest: /etc/zabbix/zabbix_agentd.d/
     notify: restart zabbix agent
 
   - name: copy custom ntp check
-    when: zabbix_agent_can_network
+    when: zabbix_agent_can_network|bool
     copy:
       src: custom.time.offset.conf
       dest: /etc/zabbix/zabbix_agentd.d/

@@ -1,6 +1,9 @@
+# vim: set ft=yaml ts=4 expandtab:
 ---
 
 zabbix_agent_can_network: false
 zabbix:
   cfg:
     Include: /etc/zabbix/zabbix_agentd.d
+
+...
