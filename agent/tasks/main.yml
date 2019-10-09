@@ -56,7 +56,9 @@
       dest: /root/
 
   - name: selinux policy is loaded
-    when: ansible_selinux.status == 'enabled'
+    when:
+      - ansible_selinux.status == 'enabled'
+      - false
     command: semodule -i /root/zabbix-agent.pp
 
   - name: netcat is present
