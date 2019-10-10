@@ -74,7 +74,6 @@
     notify: restart zabbix agent
 
   - name: copy custom ntp check
-    when: zabbix_agent_can_network|bool
     copy:
       src: custom.time.offset.conf
       dest: /etc/zabbix/zabbix_agentd.d/
