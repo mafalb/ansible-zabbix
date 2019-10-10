@@ -80,6 +80,13 @@
       dest: /etc/zabbix/zabbix_agentd.d/
     notify: restart zabbix agent
   
+  - name: copy custom ntp check
+    copy:
+      src: userparameter_chrony.conf
+      dest: /etc/zabbix/zabbix_agentd.d/
+      mode: 00644
+    notify: restart zabbix agent
+
   - name: logrotate config is present
     copy:
       src: logrotate.conf
