@@ -3,9 +3,18 @@
 - name: open port for monitoring
   firewalld:
     zone: dmz
+    permanent: yes
+    immediate: yes
+    state: enabled
+    source: "{{ item }}"
+  with_items: "{{ zabbix.server }}"
+
+- name: open port for monitoring
+  firewalld:
+    zone: dmz
     port: 10050/tcp
     state: enabled
     permanent: yes
     immediate: yes
-    source: "{{ item }}"
-  with_items: "{{ zabbix.server }}"
+
+...
